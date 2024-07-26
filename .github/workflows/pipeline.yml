@@ -19,16 +19,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Create ECR Public Repository if Not Exists
+    - name: Create ECR Repository if Not Exists
       run: |
-          REPO_NAME="service-registry"
-          if ! aws ecr-public describe-repositories --repository-names $REPO_NAME --region us-east-1 > /dev/null 2>&1; then
-            echo "Public repository $REPO_NAME does not exist. Creating..."
-            aws ecr-public create-repository --repository-name $REPO_NAME --region us-east-1
-          else
-            echo "Public repository $REPO_NAME already exists."
-          fi
-      
+        REPO_NAME="service-registry"
+        if ! aws ecr describe-repositories --repository-names $REPO_NAME --region us-east-1 > /dev/null 2>&1; then
+          echo "Repository $REPO_NAME does not exist. Creating..."
+          aws ecr create-repository --repository-name $REPO_NAME --region us-east-1
+        else
+          echo "Repository $REPO_NAME already exists."
+        fi
 
     - name: Log to AWS ECR
       id: login-ecr
