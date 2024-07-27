@@ -41,7 +41,7 @@ The Service Registry is built using [Spring Cloud Netflix Eureka](https://cloud.
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/yourusername/service-registry.git
+    git clone https://github.com/Agustin199811/service-registry.git
     ```
 
 2. Build the project using Maven:
